@@ -2,11 +2,12 @@ package handler
 
 import (
 	"encoding/json"
-	"github.com/gorilla/mux"
 	"homework-SoerenDev-391298709521/database"
 	"homework-SoerenDev-391298709521/model"
 	"net/http"
 	"strconv"
+
+	"github.com/gorilla/mux"
 )
 
 // @Title Create
@@ -23,7 +24,9 @@ func createTodo(repositoryTodo *database.TodoRepository) func(w http.ResponseWri
 	return func(w http.ResponseWriter, r *http.Request) {
 		todo := &model.PostTodo{}
 		err := json.NewDecoder(r.Body).Decode(todo)
+		repositoryTodo.Lock()
 		repositoryTodo.AddTodo(*todo)
+		repositoryTodo.Unlock()
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
 		} else {
@@ -42,7 +45,9 @@ func createTodo(repositoryTodo *database.TodoRepository) func(w http.ResponseWri
 // @Router /todo [get]
 func getAllTodos(repository *database.TodoRepository) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
+		repository.RLock()
 		todos := repository.GetAllTodos()
+		repository.RUnlock()
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
 		err := json.NewEncoder(w).Encode(todos)
 		if err != nil {
@@ -64,7 +69,9 @@ func getAllTodos(repository *database.TodoRepository) func(w http.ResponseWriter
 func getTodoById(repositoryTodo *database.TodoRepository) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		id, _ := strconv.Atoi(mux.Vars(r)["id"])
+		repositoryTodo.RLock()
 		todo, err := repositoryTodo.GetTodoById(id)
+		repositoryTodo.RUnlock()
 		if err != nil {
 			w.WriteHeader(http.StatusNotFound)
 		} else {
@@ -88,7 +95,9 @@ func getTodoById(repositoryTodo *database.TodoRepository) func(w http.ResponseWr
 func deleteTodoById(repositoryTodo *database.TodoRepository) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		id, _ := strconv.Atoi(mux.Vars(r)["id"])
+		repositoryTodo.Lock()
 		err := repositoryTodo.DeleteTodo(id)
+		repositoryTodo.Unlock()
 		if err != nil {
 			w.WriteHeader(http.StatusNotFound)
 		} else {
@@ -108,7 +117,9 @@ func deleteTodoById(repositoryTodo *database.TodoRepository) func(w http.Respons
 func setTodoDone(repositoryTodo *database.TodoRepository) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		id, _ := strconv.Atoi(mux.Vars(r)["id"])
+		repositoryTodo.Lock()
 		err := repositoryTodo.TodoIsDone(id)
+		repositoryTodo.Unlock()
 		if err != nil {
 			w.WriteHeader(http.StatusNotFound)
 		} else {

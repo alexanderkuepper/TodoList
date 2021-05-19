@@ -2,13 +2,14 @@ package handler
 
 import (
 	"bytes"
-	"github.com/gorilla/mux"
-	"github.com/stretchr/testify/assert"
 	"homework-SoerenDev-391298709521/database"
 	"homework-SoerenDev-391298709521/model"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/gorilla/mux"
+	"github.com/stretchr/testify/assert"
 )
 
 var repository database.TodoRepository
@@ -31,7 +32,6 @@ func TestGetTodoById(t *testing.T) {
 	assert.Equal(t, http.StatusOK, rec.Code)
 	expected := "{\"Id\":0,\"Description\":\"Write an API\",\"DueDate\":\"07.05.2021\",\"Done\":false,\"Priority\":10}\n"
 	assert.Equal(t, expected, rec.Body.String())
-
 }
 
 func TestGetAllTodos(t *testing.T) {
