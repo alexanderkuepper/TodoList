@@ -3,11 +3,12 @@ package database
 import (
 	"errors"
 	"homework-SoerenDev-391298709521/model"
-	"sort"
+	"sync"
 )
 
 type TodoRepository struct {
 	data model.Todos
+	sync.RWMutex
 }
 
 func NewTodoRepository() TodoRepository {
@@ -15,16 +16,15 @@ func NewTodoRepository() TodoRepository {
 }
 
 func (repo *TodoRepository) AddTodo(todo model.PostTodo) {
-	id := findNewId(*repo)
+	id := findNewId(repo.data)
 	repo.data = append(repo.data, model.Todo{Id: id, DueDate: todo.DueDate, Description: todo.Description, Priority: todo.Priority})
 }
 
-func (repo TodoRepository) GetAllTodos() []model.Todo {
-	sort.Sort(repo.data)
+func (repo *TodoRepository) GetAllTodos() []model.Todo {
 	return repo.data
 }
 
-func (repo TodoRepository) GetTodoById(id int) (model.Todo, error) {
+func (repo *TodoRepository) GetTodoById(id int) (model.Todo, error) {
 	for i := range repo.data {
 		if repo.data[i].Id == id {
 			return repo.data[i], nil

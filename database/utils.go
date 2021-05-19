@@ -1,13 +1,16 @@
 package database
 
-import "sort"
+import (
+	"homework-SoerenDev-391298709521/model"
+	"sort"
+)
 
-func findNewId(repo TodoRepository) int {
-	sort.Sort(repo.data)
-	for i := range repo.data {
-		if i != repo.data[i].Id {
+func findNewId(todos model.Todos) int {
+	sort.Sort(todos)
+	for i := range todos {
+		if i != todos[i].Id {
 			return i
 		}
 	}
-	return repo.data.Len()
+	return todos.Len()
 }
