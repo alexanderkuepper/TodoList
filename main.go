@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"homework-SoerenDev-391298709521/database"
-	"homework-SoerenDev-391298709521/handler"
 	"log"
 	"net/http"
+	"todoList/database"
+	"todoList/handler"
 )
 
 // @title Todo List API

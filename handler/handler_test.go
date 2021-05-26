@@ -2,11 +2,11 @@ package handler
 
 import (
 	"bytes"
-	"homework-SoerenDev-391298709521/database"
-	"homework-SoerenDev-391298709521/model"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+	"todoList/database"
+	"todoList/model"
 
 	"github.com/gorilla/mux"
 	"github.com/stretchr/testify/assert"

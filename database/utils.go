@@ -1,8 +1,8 @@
 package database
 
 import (
-	"homework-SoerenDev-391298709521/model"
 	"sort"
+	"todoList/model"
 )
 
 func findNewId(todos model.Todos) int {

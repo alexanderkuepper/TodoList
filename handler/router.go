@@ -1,10 +1,11 @@
 package handler
 
 import (
+	"todoList/database"
+	_ "todoList/docs"
+
 	"github.com/gorilla/mux"
-	"github.com/swaggo/http-swagger"
-	"homework-SoerenDev-391298709521/database"
-	_ "homework-SoerenDev-391298709521/docs"
+	httpSwagger "github.com/swaggo/http-swagger"
 )
 
 func NewRouter(repositoryTodo *database.TodoRepository) *mux.Router {

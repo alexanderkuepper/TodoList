@@ -1,4 +1,4 @@
-module homework-SoerenDev-391298709521
+module todoList
 
 go 1.16
 

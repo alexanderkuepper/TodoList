@@ -2,8 +2,8 @@ package database
 
 import (
 	"errors"
-	"homework-SoerenDev-391298709521/model"
 	"sync"
+	"todoList/model"
 )
 
 type TodoRepository struct {

@@ -2,10 +2,10 @@ package handler
 
 import (
 	"encoding/json"
-	"homework-SoerenDev-391298709521/database"
-	"homework-SoerenDev-391298709521/model"
 	"net/http"
 	"strconv"
+	"todoList/database"
+	"todoList/model"
 
 	"github.com/gorilla/mux"
 )
