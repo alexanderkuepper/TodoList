@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
-	"todoList/database"
-	"todoList/model"
+	"todolist/database"
+	"todolist/model"
 
 	"github.com/gorilla/mux"
 	"github.com/stretchr/testify/assert"

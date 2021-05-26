@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 	"strconv"
-	"todoList/database"
-	"todoList/model"
+	"todolist/database"
+	"todolist/model"
 
 	"github.com/gorilla/mux"
 )

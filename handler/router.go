@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"todoList/database"
-	_ "todoList/docs"
+	"todolist/database"
+	_ "todolist/docs"
 
 	"github.com/gorilla/mux"
 	httpSwagger "github.com/swaggo/http-swagger"

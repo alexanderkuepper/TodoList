@@ -1,4 +1,4 @@
-module todoList
+module todolist
 
 go 1.16
 

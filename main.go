@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"todoList/database"
-	"todoList/handler"
+	"todolist/database"
+	"todolist/handler"
 )
 
 // @title Todo List API

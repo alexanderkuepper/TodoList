@@ -2,7 +2,7 @@ package database
 
 import (
 	"sort"
-	"todoList/model"
+	"todolist/model"
 )
 
 func findNewId(todos model.Todos) int {
